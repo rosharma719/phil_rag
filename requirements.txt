@@ -1,0 +1,9 @@
+requests==2.31.0
+beautifulsoup4==4.12.3
+numpy==1.26.4
+pandas==2.2.3
+psycopg2-binary==2.9.9
+sentence-transformers==2.7.0
+tqdm==4.67.1
+openai==1.63.0
+faiss-cpu==1.7.4
