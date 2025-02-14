@@ -1,4 +1,4 @@
-## **To Navaneeth "Savant" Unnikrishnan**
+## **Philosophy RAG!**
 - Be careful about overwriting the database. The scripts don't have built-in checks for that, so uhhh just don't.
 - Ensure document modification scripts resume correctly instead of starting from scratch.
 - Otherwise, do your thing. Run wild. <3
