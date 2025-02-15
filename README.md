@@ -1,4 +1,5 @@
-## **To Navaneeth "Savant" Unnikrishnan**
+# **Philosophy RAG!**
+
 - Be careful about overwriting the database. The scripts don't have built-in checks for that, so uhhh just don't.
 - Ensure document modification scripts resume correctly instead of starting from scratch.
 - Otherwise, do your thing. Run wild. <3
@@ -32,3 +33,15 @@ If you forgot the password, check `docker-compose.yml` under `NEO4J_AUTH`.
 To stop containers while **keeping database data intact**:
 
 docker-compose down
+
+## **.env file**
+
+POSTGRES_USER=POSTGRES_USER
+
+POSTGRES_PASSWORD=POSTGRES_PASSWORD
+
+POSTGRES_DB=phil_rag
+
+NEO4J_USER=NEO4J_USER
+
+NEO4J_PASSWORD=NEO4J_PASSWORD
