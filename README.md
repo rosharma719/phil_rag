@@ -11,6 +11,8 @@
 To launch the project and run everything in the background:
 
 docker-compose up -d
+source /app/venv/bin/activate
+
 
 ## **🛠 Accessing the Databases**
 
