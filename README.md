@@ -1,48 +1,30 @@
 # **Philosophy RAG!**
 
-- Be careful about overwriting the database. The scripts don't have built-in checks for that, so uhhh just don't.
-- Ensure document modification scripts resume correctly instead of starting from scratch.
-- Otherwise, do your thing. Run wild. <3
+A structured way to explore philosophy by mapping the logical and semantic connections between ideas. Users enter ideas they want to explore more, and the system cross-references them to synthesize insights and suggest related ideas to prompt further discussion. Over time, this builds an interactive belief graph, enabling deeper philosophical exploration.
 
----
-
-# **Running the Project with Docker**
-
-## **🚀 Starting the Containers**
-To launch the project and run everything in the background:
-
-docker-compose up -d
-source /app/venv/bin/activate
+Dependencies might need to be manually installed
 
 
-## **🛠 Accessing the Databases**
+## **.env file structure**
 
-### **PostgreSQL**
-To enter the database CLI:
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
 
-docker exec -it phil_rag_postgres psql -U postgres
+NEON_URL=
+NEON_USER=neondb_owner
+NEON_PASSWORD=
+NEON_HOST=
+NEON_PORT=5432
 
-### **Neo4j**
-To open Cypher shell:
+SUPABASE_PASSWORD=h
 
-docker exec -it phil_rag_neo4j cypher-shell -u neo4j -p <your-password>
+NEO4J_URI=
+NEO4J_PASSWORD=
 
-If you forgot the password, check `docker-compose.yml` under `NEO4J_AUTH`.
+MISTRAL_API_KEY=
+MISTRAL_API_KEY_2=
+MISTRAL_API_KEY_3 =
+OPENAI_API_KEY=
 
-## **🛑 Stopping Everything**
-To stop containers while **keeping database data intact**:
-
-docker-compose down
-
-## **.env file**
-
-POSTGRES_USER=POSTGRES_USER
-POSTGRES_PASSWORD=POSTGRES_PASSWORD
-POSTGRES_DB=POSTGRES_DB
-NEON_URL = NEON_URL
-
-NEO4J_USER=NEO4J_USER
-NEO4J_PASSWORD=NEO4J_PASSWORD
-MISTRAL_API_KEY=MISTRAL_API_KEY
-MISTRAL_API_KEY_2=MISTRAL_API_KEY_2
-MISTRAL_API_KEY_3 =MISTRAL_API_KEY_3
+PINECONE_API_KEY=
