@@ -4,7 +4,6 @@ A structured way to explore philosophy by mapping the logical and semantic conne
 
 Dependencies might need to be manually installed
 
-
 ## **.env file structure**
 
 POSTGRES_USER=
@@ -24,7 +23,7 @@ NEO4J_PASSWORD=
 
 MISTRAL_API_KEY=
 MISTRAL_API_KEY_2=
-MISTRAL_API_KEY_3 =
+MISTRAL_API_KEY_3=
 OPENAI_API_KEY=
 
 PINECONE_API_KEY=

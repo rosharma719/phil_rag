@@ -329,3 +329,4 @@ DB_construction/vector_ids.pkl
 DB_construction/checkpoints/processed_ids.pkl
 DB_construction/checkpoints/uploaded_ids.pkl
 randomly_discovered_ids.txt
+DB_construction/Graph_construction/checkpoints/processed_ids.pkl
