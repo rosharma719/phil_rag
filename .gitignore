@@ -333,3 +333,7 @@ DB_construction/Graph_construction/checkpoints/processed_ids.pkl
 DB_construction/Graph_construction/vector_ids.pkl
 DB_construction/Graph_construction/processed_vector_ids.pkl
 DB_construction/Graph_construction/processed_neo4j_ids.pkl
+logs.txt
+DB_operations/__pycache__/pinecone_operations.cpython-313.pyc
+.gitignore
+qb_model.lp
