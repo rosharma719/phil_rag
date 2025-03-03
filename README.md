@@ -5,27 +5,3 @@ A structured way to explore philosophy by mapping the logical and semantic conne
 Dependencies might need to be manually installed.
 
 This project uses Neon for full-document storage, Pinecone for vector search, and Neo4j for graph traversal and relationship storage.
-
-## **.env file structure**
-
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_DB=
-
-NEON_URL=
-NEON_USER=neondb_owner
-NEON_PASSWORD=
-NEON_HOST=
-NEON_PORT=5432
-
-SUPABASE_PASSWORD=h
-
-NEO4J_URI=
-NEO4J_PASSWORD=
-
-MISTRAL_API_KEY=
-MISTRAL_API_KEY_2=
-MISTRAL_API_KEY_3=
-OPENAI_API_KEY=
-
-PINECONE_API_KEY=
