@@ -341,3 +341,9 @@ DB_operations/__pycache__/neo4j_operations.cpython-313.pyc
 DB_operations/__pycache__/neon_operations.cpython-313.pyc
 .env
 .env
+LLM_querying/DB_operations/__pycache__/__init__.cpython-313.pyc
+LLM_querying/DB_operations/__pycache__/neo4j_operations.cpython-313.pyc
+LLM_querying/DB_operations/__pycache__/neon_operations.cpython-313.pyc
+LLM_querying/DB_operations/__pycache__/pinecone_operations.cpython-313.pyc
+.env
+.env

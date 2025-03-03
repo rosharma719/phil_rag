@@ -35,7 +35,7 @@ MODEL_NAME = "BAAI/bge-base-en"  # Ensure consistency in embeddings
 model = SentenceTransformer(MODEL_NAME)
 
 
-def search_beliefs(query_text, top_k=5):
+def vector_search_beliefs(query_text, top_k=5):
     """
     Searches Pinecone for the closest belief matches to the query text.
     Returns ONLY belief IDs.
@@ -67,7 +67,7 @@ def search_beliefs(query_text, top_k=5):
     return belief_ids
 
 
-def search_concepts(query_text, top_k=5):
+def vector_search_concepts(query_text, top_k=5):
     """
     Searches Pinecone for the closest concept or overloaded concept matches to the query text.
     Returns ONLY concept or overloaded concept IDs.
@@ -98,7 +98,7 @@ def search_concepts(query_text, top_k=5):
     return concept_ids
 
 
-def search_all(query_text, top_k=5):
+def vector_search_all(query_text, top_k=5):
     """
     Searches Pinecone for the closest matches to the query text across ALL types (beliefs, concepts, overloaded concepts).
     Returns a dictionary containing lists of IDs.
