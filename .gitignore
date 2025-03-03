@@ -339,3 +339,5 @@ DB_operations/__pycache__/pinecone_operations.cpython-313.pyc
 qb_model.lp
 DB_operations/__pycache__/neo4j_operations.cpython-313.pyc
 DB_operations/__pycache__/neon_operations.cpython-313.pyc
+.env
+.env
