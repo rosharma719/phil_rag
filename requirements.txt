@@ -6,4 +6,7 @@ psycopg2-binary==2.9.9
 sentence-transformers==2.7.0
 tqdm==4.67.1
 openai==1.63.0
-faiss-cpu==1.7.4
+requests==2.31.0
+python-dotenv==1.1.0
+neo4j==5.19.0
+pinecone-client==3.0.0

@@ -2,7 +2,7 @@ import os
 import psycopg2
 import logging
 from dotenv import load_dotenv
-from pinecone_operations import get_metadata  # Import Pinecone operations
+from LLM_querying.DB_operations.pinecone_operations import get_metadata  # Import Pinecone operations
 
 # Load environment variables
 load_dotenv()
