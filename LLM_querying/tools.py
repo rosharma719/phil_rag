@@ -1,6 +1,6 @@
-from LLM_querying.DB_operations.pinecone_operations import vector_search_all, get_metadata, vector_search_beliefs, vector_search_concepts
-from LLM_querying.DB_operations.neon_operations import get_content, get_title, get_section, get_mistral_output,get_beliefs_in_document, get_concepts_in_document, get_associated_thinkers, get_associated_eras
-from LLM_querying.DB_operations.neo4j_operations import get_nearest_concept, get_shortest_path, get_nearest_belief, get_nodes_within_distance
+from LLM_querying.DB_operations.pinecone_operations import *
+from LLM_querying.DB_operations.neon_operations import *
+from LLM_querying.DB_operations.neo4j_operations import *
 
 
 def search_beliefs(query, top_k=5):
@@ -19,6 +19,17 @@ def get_belief_content(belief_id):
         content = get_content(sep_id)
         if content:
             return f"[SEP {sep_id} - {title}]\n{content[:600]}"
+    return None
+
+def get_concept_content(concept_id):
+    metadata = get_metadata(concept_id)
+    name = metadata.get("name") if metadata else None
+    description = metadata.get("description") if metadata else None
+
+    if name and description:
+        return f"[Concept: {name}]\n{description[:600]}"
+    elif name:
+        return f"[Concept: {name}]\n(No description available)"
     return None
 
 
@@ -52,6 +63,7 @@ def get_associated_eras_from_belief(belief_id):
 
 
 def expand_concepts(concept_id, top_k=5):
+    
     return get_nearest_concept(concept_id, top_k=top_k)
 
 

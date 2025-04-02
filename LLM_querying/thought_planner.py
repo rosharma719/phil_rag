@@ -15,6 +15,9 @@ using available tools. For each step, return:
   - an `action`: one of [search_beliefs, search_concepts, expand_concepts, expand_beliefs, get_concept_path]
   - a `target`: what to search or relate (e.g., a concept, belief fragment, or pair of concepts)
 
+  If you're searching a belief, structure it like an opinionated statement. 
+  And if you're searching a concept, structure it like a concept (ie. a word or short phrase).
+
 Only return a JSON object with this format:
 {{
   "steps": [

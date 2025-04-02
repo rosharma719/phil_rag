@@ -1,7 +1,7 @@
 from LLM_querying.thinker_agent import loop_until_ready
 
 # 🔍 Try a complex philosophical query
-query = "What does Marxism have to say about blockchain?"
+query = "Is rationality culturally determined?"
 
 # 🔁 Let the agent plan, search, reflect, and answer
 final_answer = loop_until_ready(query)

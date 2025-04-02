@@ -3,13 +3,8 @@ from LLM_querying.tools import *
 from LLM_querying.rag_engine import build_rag_prompt
 from LLM_querying.mistral_api import call_mistral_chat
 
-
 def is_context_sufficient(question, context_chunks):
-    """
-    Ask Mistral whether the current context is sufficient to answer the question.
-    Returns True or False.
-    """
-    joined = "\n\n".join(context_chunks[-5:])  # recent context
+    joined = "\n\n".join(context_chunks)
     prompt = f"""
 <context>
 {joined}
@@ -24,12 +19,8 @@ Respond with YES or NO only.
     response = call_mistral_chat(prompt).strip().upper()
     return response.startswith("YES")
 
-
 def revise_search_plan(question, context_chunks):
-    """
-    Ask Mistral how to revise the search plan given current context.
-    """
-    context = "\n\n".join(context_chunks[-5:])
+    context = "\n\n".join(context_chunks)
     prompt = f"""
 <context>
 {context}
@@ -43,11 +34,12 @@ Respond with a short updated natural language query.
 """
     return call_mistral_chat(prompt).strip()
 
-
 def generate_final_answer(question, context_chunks):
+    print("\n🧠 Final context used:\n")
+    for chunk in context_chunks:
+        print(f"- {chunk[:200]}...\n")  # print preview of each chunk
     prompt = build_rag_prompt(context_chunks, question)
     return call_mistral_chat(prompt).strip()
-
 
 def loop_until_ready(question, max_loops=3):
     context_chunks = []
@@ -58,6 +50,8 @@ def loop_until_ready(question, max_loops=3):
         print(f"\n🔁 Loop {loops+1}: Planning for — {current_query}")
         plan = decompose_question(current_query)
 
+        new_chunks = []
+
         for step in plan.get("steps", []):
             action = step["action"]
             target = step["target"]
@@ -65,30 +59,63 @@ def loop_until_ready(question, max_loops=3):
             if action == "search_beliefs":
                 for bid in search_beliefs(target):
                     snippet = get_belief_content(bid)
-                    if snippet: context_chunks.append(snippet)
+                    if snippet: new_chunks.append(snippet)
 
             elif action == "search_concepts":
-                for cid in search_concepts(target):
-                    context_chunks.append(f"Concept result: {cid}")
+                if isinstance(target, list):
+                    for t in target:
+                        for cid in search_concepts(t):
+                            snippet = get_concept_content(cid)
+                            if snippet: new_chunks.append(snippet)
+                else:
+                    for cid in search_concepts(target):
+                        snippet = get_concept_content(cid)
+                        if snippet: new_chunks.append(snippet)
 
             elif action == "expand_concepts":
                 if isinstance(target, list):
                     for t in target:
-                        context_chunks.append(f"Expanded: {expand_concepts(t)}")
+                        try:
+                            result = expand_concepts(t)
+                            if result:
+                                new_chunks.append(f"Expanded: {result}")
+                        except Exception as e:
+                            print(f"⚠️ expand_concepts failed for {t}: {e}")
                 else:
-                    context_chunks.append(f"Expanded: {expand_concepts(target)}")
+                    try:
+                        result = expand_concepts(target)
+                        if result:
+                            new_chunks.append(f"Expanded: {result}")
+                    except Exception as e:
+                        print(f"⚠️ expand_concepts failed for {target}: {e}")
 
             elif action == "expand_beliefs":
                 if isinstance(target, list):
                     for t in target:
-                        context_chunks.append(f"Expanded: {expand_beliefs(t)}")
+                        try:
+                            result = expand_beliefs(t)
+                            if result:
+                                new_chunks.append(f"Expanded: {result}")
+                        except Exception as e:
+                            print(f"⚠️ expand_beliefs failed for {t}: {e}")
                 else:
-                    context_chunks.append(f"Expanded: {expand_beliefs(target)}")
+                    try:
+                        result = expand_beliefs(target)
+                        if result:
+                            new_chunks.append(f"Expanded: {result}")
+                    except Exception as e:
+                        print(f"⚠️ expand_beliefs failed for {target}: {e}")
 
             elif action == "get_concept_path":
                 if isinstance(target, list) and len(target) == 2:
-                    path = get_concept_path(target[0], target[1])
-                    context_chunks.append(f"Path: {path}")
+                    try:
+                        path = get_concept_path(target[0], target[1])
+                        if path:
+                            new_chunks.append(f"Path: {path}")
+                    except Exception as e:
+                        print(f"⚠️ get_concept_path failed for {target}: {e}")
+
+        context_chunks.extend(new_chunks)
 
         if is_context_sufficient(question, context_chunks):
             print("\n✅ Context sufficient. Generating final answer...")
